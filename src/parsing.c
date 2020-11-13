@@ -21,7 +21,7 @@ static int	parse_options(char *s, int *fl)
 	s++;
 	while (*s)
 	{
-		if ((n = ft_strchr_index("alRrtdG1Ss", *s)) == -1)
+		if ((n = ft_strchr_index("alRrtdg1Ss", *s)) == -1)
 			error();
 		*fl = *fl | (1 << n);
 		if ((*s == 'l') || (*s == '1'))

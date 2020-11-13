@@ -4,19 +4,13 @@
 # include "../ft_printf/include/ft_printf.h"
 # include "../ft_printf/include/get_next_line.h"
 
-/*
-** ioctl is to get the terminal width
-** time.h to get the date
-*/
 
 # include <dirent.h>
 # include <sys/stat.h>
 # include <pwd.h>
 # include <grp.h>
-//# include <uuid/uuid.h>
 # include <time.h>
 # include <sys/types.h>
-//# include <sys/acl.h>
 # include <sys/xattr.h>
 # include <limits.h>
 # include <sys/ioctl.h>
@@ -44,6 +38,8 @@ enum	{ERRNO, USAGE, MALL_ERR};
 # define LS_ONE 128
 # define LS_SS	256
 # define LS_S	512
+# define False	0
+# define True	~False
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -83,10 +79,13 @@ typedef struct			s_file
 	char				*name;
 	char				full_path[PATH_MAX];
 	struct s_file		*next;
-	t_list				list;
 }						t_file;
 
 void					error();
 int						parsing(int argc, char **argv, int *flags);
+t_file					*file_list_new(int argc, char **argv, int fl);
+int						add_new_file(char path[PATH_MAX], char *name, t_file **lst);
+int						display_all(t_file *begin, int flags, int first, int n);
+int						free_list_content(t_file **lst);
 
 #endif

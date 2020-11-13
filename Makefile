@@ -6,7 +6,8 @@ INC_DIR = include
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC = main.c parsing.c error.c file_list_new.c
+SRC = main.c parsing.c error.c file_list_new.c add_new_file.c \
+		display.c free_list_content.c \
 OBJ = $(SRC:.c=.o)
 
 SRCS=$(addprefix $(SRC_DIR)/,$(SRC))
