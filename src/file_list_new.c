@@ -3,7 +3,8 @@
 //
 #include "ft_ls.h"
 
-int		ft_sort_tab(int size, char **tab, int (*f)(const char*, const char*))
+int		ft_sort_tab(char **tab, int size,
+			int (*f)(const char*, const char*))
 {
 	int		i;
 	int		j;
@@ -34,7 +35,7 @@ t_file	*file_list_new(int argc, char **argv, int fl)
 	if (!argc)
 		add_new_file("", ".", &begin);
 	else
-		ft_sort_tab(argc, argv, &ft_strcmp);
+		ft_sort_tab(argv, argc, &ft_strcmp);
 	i = -1;
 	while (++i < argc)
 		if (add_new_file("", argv[i], &begin) == -1 && fl)

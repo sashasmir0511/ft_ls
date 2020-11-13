@@ -14,6 +14,9 @@
 # include <sys/xattr.h>
 # include <limits.h>
 # include <sys/ioctl.h>
+# include <linux/fs.h>
+# include <sys/sysmacros.h>
+
 
 enum	{ERRNO, USAGE, MALL_ERR};
 
@@ -40,6 +43,8 @@ enum	{ERRNO, USAGE, MALL_ERR};
 # define LS_S	512
 # define False	0
 # define True	~False
+//# define MAJOR(dev)
+//# define MINOR(dev)
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -87,5 +92,20 @@ t_file					*file_list_new(int argc, char **argv, int fl);
 int						add_new_file(char path[PATH_MAX], char *name, t_file **lst);
 int						display_all(t_file *begin, int flags, int first, int n);
 int						free_list_content(t_file **lst);
+void					display_name(t_file *l, int flags, int blocks_len);
+int						display_list(t_file **lst, int flags);
+int						display_list_items(t_file *file, int size[7], int flags);
 
+int						MAX(int a, int b);
+int						integer_len(int n);
+int						lst_maxlen(t_file *lst);
+int						ft_sort_tab(char **tab, int size,
+					 		int (*f)(const char*, const char*));
+t_file					*lst_swap(t_file *p1, t_file *p2);
+
+
+int						sort_list(t_file **begin, short flags);
+t_file					*ft_reverse_lst(t_file *lst);
+int						display_detailed_list(t_file *lst, int flags);
+int						get_row_size(t_file *file, int size[7], int *blocks);
 #endif

@@ -1,14 +1,14 @@
 #include "ft_ls.h"
 
-static t_file	*read_folder(char path[PATH_MAX], char *name, int options)
+static t_file	*read_folder(char path[PATH_MAX], int options)
 {
 	t_file			*begin;
 	DIR				*folder;
-	struct dirent	*entry;
+	t_dirent		*entry;
 
 	begin = NULL;
 	if (!(folder = opendir(path)))
-		ls_error(name, 0);
+		error();
 	else if (!(options & LS_D))
 	{
 		while ((entry = readdir(folder)))
@@ -49,7 +49,7 @@ int		display_all(t_file *begin, int flags, int first, int n)
 											  && ft_strcmp(file->name, ".."))))
 		{
 			display_full_path(file->full_path, n, &first);
-			begin = read_folder(file->full_path, file->name, flags);
+			begin = read_folder(file->full_path, flags);
 			if (begin)
 			{
 				display_list(&begin, flags);

@@ -8,9 +8,8 @@ int main(int argc, char **argv)
 
 	if ((i = parsing(argc, argv, &flags)) == -1)
 		return (1);
-	ft_printf("~LS_L=%d ~LS_ONE=%d\n", LS_L, LS_ONE);
 	file_lst = file_list_new(argc - i, argv + i, 1);
-//	display_all(file_lst, flags, (file_lst ? 1 : 2), argc - i);
+	display_all(file_lst, flags, (file_lst ? 1 : 2), argc - i);
 	free_list_content(&file_lst);
 	return (0);
 }

@@ -7,7 +7,10 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC = main.c parsing.c error.c file_list_new.c add_new_file.c \
-		display.c free_list_content.c \
+		display.c free_list_content.c display_list.c utils.c \
+		display_detailed_list.c sort_list.c display_list_items.c \
+
+
 OBJ = $(SRC:.c=.o)
 
 SRCS=$(addprefix $(SRC_DIR)/,$(SRC))
