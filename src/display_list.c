@@ -38,10 +38,6 @@ static int	lst_column(t_file *lst, t_index row_col, t_index maxlen, int flags)
 	return (1);
 }
 
-/*
-** bonus -s to display blocks
-*/
-
 int			lst_blocks_len(t_file *lst, int *total)
 {
 	int		maxlen;
@@ -59,7 +55,7 @@ int			lst_blocks_len(t_file *lst, int *total)
 static int	display_basic_list(t_file *lst, int flags)
 {
 	t_index			maxlen;
-	struct winsize	ws;
+	t_winsize		ws;
 	t_index			i;
 	t_file			*tmp_lst;
 	int				total;
@@ -78,15 +74,11 @@ static int	display_basic_list(t_file *lst, int flags)
 		++i.y;
 		tmp_lst = tmp_lst->next;
 	}
-	if (!(flags & 128))
+	if (!(flags & LS_ONE))
 		i.y = (i.y % i.x ? 1 : 0) + (i.y / i.x);
-	lst_column(lst, i, maxlen, flags);
+	lst_column(lst, i, maxlen, flags	);
 	return (1);
 }
-
-/*
-** print list ordered as specified by user
-*/
 
 int			display_list(t_file **lst, int flags)
 {
@@ -98,10 +90,6 @@ int			display_list(t_file **lst, int flags)
 	return (1);
 }
 
-/*
-** sub function for norm and to handle -c color flag
-*/
-
 void		display_name(t_file *l, int flags, int blocks_len)
 {
 	if (blocks_len)
@@ -112,9 +100,9 @@ void		display_name(t_file *l, int flags, int blocks_len)
 	if (flags & LS_G)
 	{
 		if (S_ISDIR(l->mode))
-			ft_printf("%{cyan}%s%{eoc}", l->name);
+			ft_printf("%{blue}%s", l->name);
 		else
-			ft_printf((S_IXUSR & l->mode) ? "%{red}%s%{eoc}" : "%s", l->name);
+			ft_printf((S_IXUSR & l->mode) ? "%{green}%s" : "%s", l->name);
 	}
 	else
 		ft_printf("%s", l->name);

@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 #include "ft_ls.h"
 
-/*
-** stores file full path data
-*/
-
 static int		get_full_path(char path[PATH_MAX], char *name,
 								char full_path[PATH_MAX])
 {
@@ -34,10 +30,6 @@ static int		get_full_path(char path[PATH_MAX], char *name,
 	return ((i < PATH_MAX) ? 1 : 0);
 }
 
-/*
-** file structure
-*/
-
 static t_file	*new_file(char path[PATH_MAX], char *name, t_stat *stat)
 {
 	t_file	*new;
@@ -51,17 +43,13 @@ static t_file	*new_file(char path[PATH_MAX], char *name, t_stat *stat)
 	new->st_gid = stat->st_gid;
 	new->size = stat->st_size;
 	new->st_rdev = stat->st_rdev;
-	new->time = stat->st_mtime; // TODO: Разобраться
+	new->time = stat->st_mtime;
 	new->ntime = stat->st_mtime;
-	new->st_blocks = stat->st_blocks;
+	new->st_blocks = stat->st_blocks / 2;
 	get_full_path(path, name, new->full_path);
 	new->next = NULL;
 	return (new);
 }
-
-/*
-** adds a new file in the list or create a list if it didn't exist'
-*/
 
 int				add_new_file(char path[PATH_MAX], char *name, t_file **lst)
 {

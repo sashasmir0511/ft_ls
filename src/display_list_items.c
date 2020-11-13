@@ -12,10 +12,6 @@
 
 #include "ft_ls.h"
 
-/*
-** function to get file type
-*/
-
 static char		get_file_type(int mode)
 {
 	mode = (mode & S_IFMT);
@@ -36,11 +32,6 @@ static char		get_file_type(int mode)
 	else
 		return ('-');
 }
-
-
-/*
-** get CHMOD information
-*/
 
 static void		display_chmod(char chmod[11], int mode)
 {
@@ -64,12 +55,6 @@ static void		display_chmod(char chmod[11], int mode)
 	ft_putstr(chmod);
 }
 
-/*
-** display time
-** s + 4 to trim day
-** %.12s in order to remove seconds and year.
-*/
-
 static void		display_time(t_file *file)
 {
 	time_t	today;
@@ -80,27 +65,43 @@ static void		display_time(t_file *file)
 	ft_printf(" %.12s ", s);
 }
 
-/*
-** function used for -l option
-** name is not display is file type is a link
-*/
+void 			print_space(int n, int a)
+{
+	int i;
+
+	i = (n > a) ? (n - a) : (a - n);
+	while (i--)
+		ft_printf(" ");
+}
 
 int				display_list_items(t_file *file, int size[7], int flags)
 {
 	char	str[12];
 	char	buf[NAME_MAX + 1];
 
-	(flags & LS_S) ? ft_printf("%*hu ", size[0], file->st_blocks) : 0;
+	if (flags & LS_S)
+	{
+		print_space(size[0], integer_len(file->st_blocks));
+		ft_printf("%u ", file->st_blocks);
+	}
 	display_chmod(str, file->mode);
-	ft_printf(" %*hu", size[1], file->st_nlink);
-	ft_printf(" %-*s", size[2], getpwuid(file->st_uid)->pw_name);
-	ft_printf("  %-*s", size[3], getgrgid(file->st_gid)->gr_name);
+	print_space(size[1], integer_len(file->st_nlink));
+	ft_printf(" %u", file->st_nlink);
+	ft_printf(" %s", getpwuid(file->st_uid)->pw_name);
+	print_space(size[2], ft_strlen(getpwuid(file->st_uid)->pw_name));
+	ft_printf("  %s", getgrgid(file->st_gid)->gr_name);
+	print_space(size[3], ft_strlen(getgrgid(file->st_gid)->gr_name));
 	if (str[0] != 'c' && str[0] != 'b')
-		ft_printf("  %*lld", size[4], file->size);
+	{
+		print_space(size[4], integer_len(file->size));
+		ft_printf(" %lld", file->size);
+	}
 	else
 	{
-		ft_printf(" %*d", size[5], major(file->st_rdev));
-		ft_printf(", %*d", size[6], minor(file->st_rdev));
+		print_space(size[5], integer_len(major(file->st_rdev)));
+		ft_printf(" %d", major(file->st_rdev));
+		print_space(size[6], integer_len(minor(file->st_rdev)));
+		ft_printf(", %d", minor(file->st_rdev));
 	}
 	display_time(file);
 	if (str[0] != 'l')

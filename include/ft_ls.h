@@ -59,6 +59,7 @@ typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
 typedef struct passwd	t_passwd;
 typedef struct group	t_group;
+typedef struct winsize	t_winsize;
 
 typedef struct			s_index
 {
@@ -103,7 +104,8 @@ int						display(t_file *begin, int flags, int first, int n);
 int						free_list_content(t_file **lst);
 void					display_name(t_file *l, int flags, int blocks_len);
 int						display_list(t_file **lst, int flags);
-int						display_list_items(t_file *file, int size[7], int flags);
+int						display_list_items(t_file *file, int size[7],
+							int flags);
 
 int						MAX(int a, int b);
 int						integer_len(int n);
@@ -116,5 +118,5 @@ t_file					*lst_swap(t_file *p1, t_file *p2);
 int						sort_list(t_file **begin, short flags);
 t_file					*ft_reverse_lst(t_file *lst);
 int						display_detailed_list(t_file *lst, int flags);
-int						get_row_size(t_file *file, int size[7], int *blocks);
+//int						get_row_size(t_file *file, int size[7], int *blocks);
 #endif
