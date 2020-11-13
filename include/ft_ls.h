@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
+/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #ifndef FT_LS_H
 # define FT_LS_H
 
@@ -43,8 +54,6 @@ enum	{ERRNO, USAGE, MALL_ERR};
 # define LS_S	512
 # define False	0
 # define True	~False
-//# define MAJOR(dev)
-//# define MINOR(dev)
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -90,7 +99,7 @@ void					error();
 int						parsing(int argc, char **argv, int *flags);
 t_file					*file_list_new(int argc, char **argv, int fl);
 int						add_new_file(char path[PATH_MAX], char *name, t_file **lst);
-int						display_all(t_file *begin, int flags, int first, int n);
+int						display(t_file *begin, int flags, int first, int n);
 int						free_list_content(t_file **lst);
 void					display_name(t_file *l, int flags, int blocks_len);
 int						display_list(t_file **lst, int flags);

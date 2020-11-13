@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_list.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
+/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_ls.h"
 
 static int	lst_column(t_file *lst, t_index row_col, t_index maxlen, int flags)
@@ -45,18 +56,10 @@ int			lst_blocks_len(t_file *lst, int *total)
 	return (maxlen);
 }
 
-/*
-** bonus on columns
-** padding is done according to the longest file name (maxlen.x)
-** maxlen.y is used for -s option to calculate the width of blocks display
-** so we need to go through the list once in order to get maxlen (tmp).
-** if (!(flags & 128) checks for -1 option, row will be number of element.
-*/
-
 static int	display_basic_list(t_file *lst, int flags)
 {
 	t_index			maxlen;
-	struct winsize	ts;
+	struct winsize	ws;
 	t_index			i;
 	t_file			*tmp_lst;
 	int				total;
@@ -66,8 +69,8 @@ static int	display_basic_list(t_file *lst, int flags)
 	maxlen.y = (flags & LS_S) ? lst_blocks_len(lst, &total) : 0;
 	if (flags & LS_S)
 		ft_printf("total %d\n", total);
-	ioctl(0, TIOCGWINSZ, &ts);
-	i.x = (!(flags & 128)) ? ts.ws_col / (maxlen.x + maxlen.y) : 1;
+	ioctl(0, TIOCGWINSZ, &ws);
+	i.x = (!(flags & LS_ONE)) ? ws.ws_col / (maxlen.x + maxlen.y) : 1;
 	i.y = 0;
 	tmp_lst = lst;
 	while (tmp_lst)

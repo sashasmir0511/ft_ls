@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
+/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_ls.h"
 
 static t_file	*read_folder(char path[PATH_MAX], int options)
@@ -36,7 +47,7 @@ static void		display_full_path(char *full_path, int number, int *first)
 	}
 }
 
-int		display_all(t_file *begin, int flags, int first, int n)
+int		display(t_file *begin, int flags, int first, int n)
 {
 	t_file	*file;
 
@@ -53,7 +64,7 @@ int		display_all(t_file *begin, int flags, int first, int n)
 			if (begin)
 			{
 				display_list(&begin, flags);
-				display_all(begin, flags, 0, -1);
+				display(begin, flags, 0, -1);
 				free_list_content(&begin);
 			}
 		}
