@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lhaired  <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
 /*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */

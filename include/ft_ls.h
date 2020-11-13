@@ -118,5 +118,4 @@ t_file					*lst_swap(t_file *p1, t_file *p2);
 int						sort_list(t_file **begin, short flags);
 t_file					*ft_reverse_lst(t_file *lst);
 int						display_detailed_list(t_file *lst, int flags);
-//int						get_row_size(t_file *file, int size[7], int *blocks);
 #endif

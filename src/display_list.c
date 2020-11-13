@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   display_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lhaired  <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
 /*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
@@ -61,7 +61,7 @@ static int	display_basic_list(t_file *lst, int flags)
 	int				total;
 
 	total = 0;
-	maxlen.x = lst_maxlen(lst) + ((flags & LS_G) ? 1 : 4);
+	maxlen.x = lst_maxlen(lst) + 1;
 	maxlen.y = (flags & LS_S) ? lst_blocks_len(lst, &total) : 0;
 	if (flags & LS_S)
 		ft_printf("total %d\n", total);
@@ -76,7 +76,7 @@ static int	display_basic_list(t_file *lst, int flags)
 	}
 	if (!(flags & LS_ONE))
 		i.y = (i.y % i.x ? 1 : 0) + (i.y / i.x);
-	lst_column(lst, i, maxlen, flags	);
+	lst_column(lst, i, maxlen, flags);
 	return (1);
 }
 

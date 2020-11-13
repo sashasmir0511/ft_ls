@@ -105,5 +105,6 @@ void			ft_print_memory(const void *addr, size_t size);
 long			ft_atol(const char *str);
 int				ft_max(int a, int b);
 void			ft_putnchar(int n, char *s);
+int				ft_strcmp_no_ascii(char *s1, char *s2);
 
 #endif

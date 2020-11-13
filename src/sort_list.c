@@ -12,10 +12,6 @@
 
 #include "ft_ls.h"
 
-/*
-** for -r flag
-*/
-
 t_file			*ft_reverse_lst(t_file *lst)
 {
 	t_file *a;
@@ -35,28 +31,20 @@ t_file			*ft_reverse_lst(t_file *lst)
 	return (a);
 }
 
-/*
-** listing by ascii order
-*/
-
 static t_file	*lst_sort_ascii(t_file *lst)
 {
 	if (!lst)
 		return (NULL);
-	if (lst->next && ft_strcmp(lst->name, lst->next->name) > 0)
+	if (lst->next && ft_strcmp_no_ascii(lst->name, lst->next->name) > 0)
 		lst = lst_swap(lst, lst->next);
 	lst->next = lst_sort_ascii(lst->next);
-	if (lst->next && ft_strcmp(lst->name, lst->next->name) > 0)
+	if (lst->next && ft_strcmp_no_ascii(lst->name, lst->next->name) > 0)
 	{
 		lst = lst_swap(lst, lst->next);
 		lst->next = lst_sort_ascii(lst->next);
 	}
 	return (lst);
 }
-
-/*
-** for -t flag
-*/
 
 static t_file	*lst_sort_time(t_file *lst)
 {
@@ -84,10 +72,6 @@ static t_file	*lst_sort_time(t_file *lst)
 	return (lst);
 }
 
-/*
-** listing by size order
-*/
-
 static t_file	*lst_sort_size(t_file *lst)
 {
 	if (!lst)
@@ -102,10 +86,6 @@ static t_file	*lst_sort_size(t_file *lst)
 	}
 	return (lst);
 }
-
-/*
-** sorting list according to r and t parameters
-*/
 
 int				sort_list(t_file **begin, short flags)
 {
