@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   display_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhaired  <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lhaired <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
-/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*   Created: 2020/02/02 13:37:31 by lhaired           #+#    #+#             */
+/*   Updated: 2020/02/02 17:10:43 by lhaired          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static int	lst_column(t_file *lst, t_index row_col, t_index maxlen, int flags)
@@ -27,7 +28,7 @@ static int	lst_column(t_file *lst, t_index row_col, t_index maxlen, int flags)
 		{
 			display_name(lst, flags, maxlen.y);
 			if (tmp_column)
-				ft_putnchar(MAX(maxlen.x - ft_strlen(lst->name), 0), " ");
+				ft_putnchar(max(maxlen.x - ft_strlen(lst->name), 0), " ");
 			tmp_row = row_col.y;
 			while (lst && tmp_row--)
 				lst = lst->next;
@@ -45,7 +46,7 @@ int			lst_blocks_len(t_file *lst, int *total)
 	maxlen = 0;
 	while (lst)
 	{
-		maxlen = MAX(integer_len(lst->st_blocks), maxlen);
+		maxlen = max(integer_len(lst->st_blocks), maxlen);
 		*total += lst->st_blocks;
 		lst = lst->next;
 	}
@@ -94,7 +95,7 @@ void		display_name(t_file *l, int flags, int blocks_len)
 {
 	if (blocks_len)
 	{
-		ft_putnchar(MAX(blocks_len - integer_len(l->st_blocks), 0), " ");
+		ft_putnchar(max(blocks_len - integer_len(l->st_blocks), 0), " ");
 		ft_printf("%d ", l->st_blocks);
 	}
 	if (flags & LS_G)

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lhaired <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
-/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*   Created: 2020/02/02 13:37:31 by lhaired           #+#    #+#             */
+/*   Updated: 2020/02/02 17:10:43 by lhaired          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static t_file	*read_folder(char path[PATH_MAX], int options)
@@ -47,7 +48,7 @@ static void		display_full_path(char *full_path, int number, int *first)
 	}
 }
 
-int		display(t_file *begin, int flags, int first, int n)
+int				display(t_file *begin, int flags, int first, int n)
 {
 	t_file	*file;
 
@@ -57,7 +58,7 @@ int		display(t_file *begin, int flags, int first, int n)
 	while (file)
 	{
 		if (S_ISDIR(file->mode) && (first || (ft_strcmp(file->name, ".")
-											  && ft_strcmp(file->name, ".."))))
+		&& ft_strcmp(file->name, ".."))))
 		{
 			display_full_path(file->full_path, n, &first);
 			begin = read_folder(file->full_path, flags);

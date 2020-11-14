@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lhaired <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
-/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*   Created: 2020/02/02 13:37:31 by lhaired           #+#    #+#             */
+/*   Updated: 2020/02/02 17:10:43 by lhaired          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <ft_ls.h>
 
 static int	ft_strchr_index(char *s, int c)
@@ -58,4 +59,3 @@ int			parsing(int argc, char **argv, int *flags)
 	}
 	return (i);
 }
-

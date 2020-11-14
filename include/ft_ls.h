@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhaired  <angavrel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lhaired <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 03:10:19 by lhaired           #+#    #+#             */
-/*   Updated: 2020/11/13 04:45:18 by lhaired          ###   ########.fr       */
+/*   Created: 2020/02/02 13:37:31 by lhaired           #+#    #+#             */
+/*   Updated: 2020/02/02 17:10:43 by lhaired          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef FT_LS_H
 # define FT_LS_H
 
 # include "../ft_printf/include/ft_printf.h"
 # include "../ft_printf/include/get_next_line.h"
-
-
 # include <dirent.h>
 # include <sys/stat.h>
 # include <pwd.h>
@@ -27,7 +26,6 @@
 # include <sys/ioctl.h>
 # include <linux/fs.h>
 # include <sys/sysmacros.h>
-
 
 enum	{ERRNO, USAGE, MALL_ERR};
 
@@ -52,8 +50,6 @@ enum	{ERRNO, USAGE, MALL_ERR};
 # define LS_ONE 128
 # define LS_SS	256
 # define LS_S	512
-# define False	0
-# define True	~False
 
 typedef struct stat		t_stat;
 typedef struct dirent	t_dirent;
@@ -99,7 +95,8 @@ typedef struct			s_file
 void					error();
 int						parsing(int argc, char **argv, int *flags);
 t_file					*file_list_new(int argc, char **argv, int fl);
-int						add_new_file(char path[PATH_MAX], char *name, t_file **lst);
+int						add_new_file(char path[PATH_MAX],
+							char *name, t_file **lst);
 int						display(t_file *begin, int flags, int first, int n);
 int						free_list_content(t_file **lst);
 void					display_name(t_file *l, int flags, int blocks_len);
@@ -107,13 +104,13 @@ int						display_list(t_file **lst, int flags);
 int						display_list_items(t_file *file, int size[7],
 							int flags);
 
-int						MAX(int a, int b);
+int						max(int a, int b);
 int						integer_len(int n);
 int						lst_maxlen(t_file *lst);
 int						ft_sort_tab(char **tab, int size,
-					 		int (*f)(const char*, const char*));
+							int (*f)(const char*, const char*));
 t_file					*lst_swap(t_file *p1, t_file *p2);
-
+void					print_space(int n, int a);
 
 int						sort_list(t_file **begin, short flags);
 t_file					*ft_reverse_lst(t_file *lst);

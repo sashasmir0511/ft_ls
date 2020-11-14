@@ -14,6 +14,6 @@
 
 void	ft_putnchar(int n, char *s)
 {
-	while(n--)
+	while (n--)
 		ft_putchar(*s);
 }
